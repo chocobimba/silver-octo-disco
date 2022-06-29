@@ -89,6 +89,7 @@ echo -e "PROMPT 0\nTIMEOUT 0\nDEFAULT arch\n\nLABEL arch\n\tLINUX ../vmlinuz-lin
 # Выход из chroot
 exit
 # Размонтирование разделов
-umount -R /mnt
+umount /mnt
 # Выключение системы
 systemctl poweroff
+fi
