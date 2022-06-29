@@ -6,7 +6,7 @@ sleep 150
 if ls /sys/firmware/efi/efivars
 # Базовая установка для EFI
 then
-echo 'Your boot mode: EFI'
+echo 'Your boot mode is EFI'
 # Создание разделов
 echo -e ',488384758K,L\n,+,U\n' | sfdisk -X gpt -w always -W always --lock /dev/sda
 # Форматирование разделов
@@ -37,6 +37,7 @@ echo -e '127.0.0.1\tlocalhost\n::1      \tlocalhost\n127.0.1.1\t$HOSTNAME' >> /e
 # Регенерация initramfs
 mkinitcpio -P
 # Задание пароля для суперпользователя
+echo -n 'Set password for root:'
 passwd
 # Установка загрузчика
 bootctl --esp-path=/boot install
@@ -51,7 +52,7 @@ umount -R /mnt
 systemctl poweroff
 # Базовая установка для BIOS
 else
-echo 'Your boot mode: BIOS'
+echo 'Your boot mode is BIOS'
 # Создание разделов
 echo -e ',+,L\n' | sfdisk -X dos -w always -W always --lock /dev/sda
 # Форматирование разделов
@@ -80,10 +81,11 @@ echo -e '127.0.0.1\tlocalhost\n::1      \tlocalhost\n127.0.1.1\n$HOSTNAME' >> /e
 # Регенерация initramfs
 mkinitcpio -P
 # Задание пароля для суперпользователя
+echo -n 'Set password for root:'
 passwd
 # Установка загрузчика
 syslinux-install_update -i -a -m
-echo -e "PROMPT 0\nTIMEOUT 0\nDEFAULT arch\n\nLABEL arch\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../initramfs-linux-lts.img\n\nLABEL archfallback\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../initramfs-linux-lts-fallback.img" > /boot/syslinux/syslinux.img
+echo -e "PROMPT 0\nTIMEOUT 0\nDEFAULT arch\n\nLABEL arch\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts.img\n\nLABEL archfallback\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts-fallback.img" > /boot/syslinux/syslinux.img
 # Выход из chroot
 exit
 # Размонтирование разделов
