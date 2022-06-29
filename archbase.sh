@@ -85,7 +85,7 @@ echo -n 'Set password for root:'
 passwd
 # Установка загрузчика
 syslinux-install_update -i -a -m
-echo -e "PROMPT 0\nTIMEOUT 0\nDEFAULT arch\n\nLABEL arch\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts.img\n\nLABEL archfallback\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts-fallback.img" > /boot/syslinux/syslinux.img
+echo -e "PROMPT 0\nTIMEOUT 0\nDEFAULT arch\n\nLABEL arch\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts.img\n\nLABEL archfallback\n\tLINUX ../vmlinuz-linux-lts\n\tAPPEND root=UUID=`lsblk -dno UUID /dev/sda1` rw\n\tINITRD ../intel-ucode.img,../initramfs-linux-lts-fallback.img" > /boot/syslinux/syslinux.cfg
 # Выход из chroot
 exit
 # Размонтирование разделов
