@@ -81,7 +81,7 @@ echo -e '127.0.0.1\tlocalhost\n::1      \tlocalhost\n127.0.1.1\n$HOSTNAME' >> /e
 # Регенерация initramfs
 mkinitcpio -P
 # Задание пароля для суперпользователя
-echo -n 'Set password for root:'
+echo 'Set password for root'
 passwd
 # Установка загрузчика
 syslinux-install_update -i -a -m
