@@ -16,7 +16,7 @@ mkfs.fat -F 32 /dev/sda2
 mount /dev/sda1 /mnt
 mount -m /dev/sda2 /mnt/boot
 # Установка базовых пакетов
-pacstrap /mnt base linux-lts linux-firmware intel-ucode sudo nano
+pacstrap /mnt base linux-lts linux-firmware intel-ucode iwd sudo nano
 # Создание fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # Вход в chroot
@@ -60,7 +60,7 @@ mkfs.ext4 /dev/sda1
 # Монтирование разделов
 mount /dev/sda1 /mnt
 # Установка необходимых пакетов
-pacstrap /mnt base linux-lts linux-firmware intel-ucode sudo nano syslinux
+pacstrap /mnt base linux-lts linux-firmware intel-ucode iwd sudo nano syslinux
 # Создание fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # Вход в chroot
