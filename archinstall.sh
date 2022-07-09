@@ -1,0 +1,2 @@
+# Установка Arch Linux
+archinstall
