@@ -28,7 +28,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Вход в chroot
 arch-chroot /mnt
 # Задание часового пояса
-echo -n 'Specify the zone and subzone to set the time zone (e.g. Europe/Moscow or Canada/Eastern):'
+echo -n 'Specify the zone and subzone to set the time zone (e.g. Europe/Moscow or Asia/Omsk):'
 read $ZONE
 ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 hwclock --systohc
@@ -78,7 +78,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 # Вход в chroot
 arch-chroot /mnt
 # Задание часового пояса
-echo -n 'Specify the zone and subzone to set the time zone (e.g. Europe/Moscow or Canada/Eastern):'
+echo -n 'Specify the zone and subzone to set the time zone (e.g. Europe/Moscow or Asia/Omsk):'
 read $ZONE
 ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 hwclock --systohc
